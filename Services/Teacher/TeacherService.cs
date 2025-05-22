@@ -1,8 +1,10 @@
 ﻿namespace SchoolManagementAPI.Services.Teacher
 {
-    public interface TeacherService
+    public class TeacherService
     {
-        void AddTeacher(Teacher teacher);
-        List<Teacher> GetAllTeachers();
+        private List<TeacherService> _teachers = new();
+        public void AddTeacher(TeacherService teacher) => _teachers.Add(teacher);
+        public List<TeacherService> GetAllTeachers() => _teachers;
     }
 }
+

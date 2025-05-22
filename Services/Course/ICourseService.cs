@@ -1,6 +1,8 @@
 ﻿namespace SchoolManagementAPI.Services.Course
 {
-    public class ICourseService
+    public interface ICourseService
     {
+        void AddCourse(ICourseService course);
+        List<ICourseService> GetAllCourses();
     }
 }

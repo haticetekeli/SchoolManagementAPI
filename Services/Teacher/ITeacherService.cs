@@ -1,6 +1,8 @@
 ﻿namespace SchoolManagementAPI.Services.Teacher
 {
-    public class ITeacherService
+    public interface ITeacherService
     {
+        void AddTeacher(ITeacherService teacher);
+        List<ITeacherService> GetAllTeachers();
     }
 }

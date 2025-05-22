@@ -1,18 +1,19 @@
+using SchoolManagementAPI.Services.Course;
 using SchoolManagementAPI.Services.StudentService;
+using SchoolManagementAPI.Services.Teacher;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSingleton<IStudentService, StudentService>();
+builder.Services.AddSingleton<ITeacherService, TeacherService>();
+builder.Services.AddSingleton<ICourseService, CourseService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -20,9 +21,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
