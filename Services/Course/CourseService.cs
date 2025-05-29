@@ -1,9 +1,21 @@
-﻿namespace SchoolManagementAPI.Services.Course
+﻿using SchoolManagementAPI.Models;
+
+namespace SchoolManagementAPI.Services.Courses
 {
-    public class CourseService
+    public class CourseService : ICourseService
     {
-        private List<CourseService> _courses = new();
-        public void AddCourse(CourseService course) => _courses.Add(course);
-        public List<CourseService> GetAllCourses() => _courses;
+        public List<Course> _courses = new();
+
+        public void AddCourse(Course course)
+        {
+            _courses.Add(course);
+        }
+
+        public List<Course> GetAllCourses() => _courses;
+
+        List<Course> ICourseService.GetAllCourses()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

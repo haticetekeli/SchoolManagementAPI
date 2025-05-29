@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagementAPI.Models;
-using SchoolManagementAPI.Services.Course;
+using SchoolManagementAPI.Services.Courses;
 
 namespace SchoolManagementAPI.Controllers
 {

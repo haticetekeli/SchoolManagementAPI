@@ -16,7 +16,7 @@ namespace SchoolManagementAPI.Controllers
         {
             var exists = users.Any(u => u.Username == user.Username && u.Password == user.Password);
             if (!exists) return Unauthorized("Invalid credentials");
-            return Ok("Login successful");
+            return Ok("Giriş başarılı!");
         }
     }
 }

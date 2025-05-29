@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagementAPI.Models;
-using SchoolManagementAPI.Services.Teacher;
+using SchoolManagementAPI.Services.Teachers;
 
 namespace SchoolManagementAPI.Controllers
 {
@@ -21,7 +21,7 @@ namespace SchoolManagementAPI.Controllers
         [HttpPost]
         public IActionResult Add(Teacher teacher)
         {
-            _teacherService.AddTeacher(teacher);
+            _teacherService.Add(teacher);
             return Ok();
         }
     }

@@ -1,8 +1,11 @@
-﻿namespace SchoolManagementAPI.Services.Teacher
+﻿using System.Collections.Generic;
+using SchoolManagementAPI.Models;
+
+namespace SchoolManagementAPI.Services.Teachers
 {
     public interface ITeacherService
     {
-        void AddTeacher(ITeacherService teacher);
-        List<ITeacherService> GetAllTeachers();
+        void Add(Models.Teacher teacher);
+        List<Models.Teacher> GetAllTeachers();
     }
 }

@@ -1,10 +1,17 @@
-﻿namespace SchoolManagementAPI.Services.Teacher
+﻿using SchoolManagementAPI.Models;
+using SchoolManagementAPI.Services.Teachers;
+
+namespace SchoolManagementAPI.Services.Teacher
 {
-    public class TeacherService
+    public class TeacherService : ITeacherService
     {
-        private List<TeacherService> _teachers = new();
-        public void AddTeacher(TeacherService teacher) => _teachers.Add(teacher);
-        public List<TeacherService> GetAllTeachers() => _teachers;
+        public List<Models.Teacher> _teachers = new();
+
+        public void Add(Models.Teacher teacher)
+        {
+            _teachers.Add(teacher);
+        }
+
+        public List<Models.Teacher> GetAllTeachers() => _teachers;
     }
 }
-
