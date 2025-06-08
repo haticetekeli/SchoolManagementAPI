@@ -1,22 +1,50 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolManagementAPI.Models;
+using SchoolManagementAPI.Services.Auth;
 
 namespace SchoolManagementAPI.Controllers
 {
     [ApiController]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private static List<User> users = new() {
-        new User { Username = "admin", Password = "1234" }
-    };
+        private readonly IAuthService _authService;
+
+        public AuthController(IAuthService authService)
+        {
+            _authService = authService;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _authService.Register(model.Username, model.Password);
+            if (result)
+            {
+                return Ok(new { message = "Kullanıcı başarıyla kaydedildi!" });
+            }
+            
+            return BadRequest(new { message = "Kullanıcı kaydı başarısız oldu. Lütfen tekrar deneyin." });
+        }
 
         [HttpPost("login")]
-        public IActionResult Login(User user)
+        public async Task<IActionResult> Login([FromBody] RegisterViewModel model)
         {
-            var exists = users.Any(u => u.Username == user.Username && u.Password == user.Password);
-            if (!exists) return Unauthorized("Invalid credentials");
-            return Ok("Giriş başarılı!");
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _authService.Login(model.Username, model.Password);
+            if (result)
+            {
+                return Ok(new { message = "Giriş başarılı!" });
+            }
+            
+            return Unauthorized(new { message = "Geçersiz kullanıcı adı veya şifre." });
         }
     }
 }
